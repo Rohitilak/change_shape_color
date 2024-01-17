@@ -1,43 +1,35 @@
-let color = [
-    "red",
-    "green",
-    "purple",
-    "red",
-    "cyan",
-    "yellow",
-    "orange",
-    "purple",
-    "grey",
-    "pink"
-]
+const Circel = document.querySelector(".Circel");
+const btn1 = document.querySelector("#clr");
+const btn2 = document.querySelector("#shp");
+const Shp = document.getElementsByClassName("shp");
 
-var index = 0;
-var isTriangle = false;
+function chngclor() {
+  let str = "0123456789abcdef";
+  let colstr = "#";
 
-let col = document.getElementById("btn-1");
-let col2 = document.getElementById("btn-2");
+  for (let i = 0; i < 6; i++) {
+    let crt = Math.floor(Math.random() * str.length);
+    colstr += str[crt];
+  }
 
-col.addEventListener("click", colorChange);
-
-col2.addEventListener("click", shapeChange);
-
-function colorChange(){
-    if(index === color.length){
-        index = 0;
-    }
-
-    document.getElementsByClassName("circle")[0].style.backgroundColor = color[index];
-    index++;
+  Circel.style.backgroundColor = colstr;
 }
 
-function shapeChange(){
-    if(!isTriangle){
-        var i= document.getElementsByClassName("inner")[0];
-        i.className  = "triangle-bottom-left";
-        isTriangle = true;
-    }else{
-        var i = document.getElementsByClassName("triangle-bottom-left")[0];
-        i.className = "inner";
-        isTriangle = false;
-    }
+const shape = [
+  "square",
+  "triangle-up",
+  "star-six",
+  "hexagon",
+  "heart",
+  "diamond",
+];
+
+function changeShape() {
+  let chng = Math.floor(Math.random() * shape.length);
+  // console.log(chng);
+
+  Shp[0].id = shape[chng];
 }
+
+btn1.addEventListener("click", chngclor);
+btn2.addEventListener("click", changeShape);
